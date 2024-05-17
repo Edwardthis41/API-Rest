@@ -1,6 +1,6 @@
 // Uso de Librerias
 const express = require('express');
-
+const conexion = require('../database/db');
 // Para manejo de endpoint con express
 const router = express.Router() // R de router esta en MAYUSCULAS
 
