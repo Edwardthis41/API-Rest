@@ -9,6 +9,7 @@ const port = 3000;
 
 // Utilizar rutas
 servidor.use(router);
+servidor.use(express.json);
 
 // Para ejecutar el servidor
 servidor.listen(3000, () => console.log(`Server running http://$(server):$(port)`));
