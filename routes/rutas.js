@@ -104,6 +104,42 @@ router.get('/clientes/:id', (req, res) => {
     })
 } )
 
+// Funcion para eliminar en la base de datos
+router.delete('/clientes/:id', (req, res) => {
+    conexion.query('SELECT * FROM Productos WHERE ID_Producto = ?',
+    [req.params.id],
+    (err, result) => {
+        if (err) {
+            console.log('Error en la consulta: ', err);
+        } else {
+            console.log(result);
+        }
+    })
+} )
+//////////////////////////// PRUEBA ////////////////////////////
+
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.json());
+
+// Crear una función para insertar datos
+router.post('/usuarios', (req, res) => {
+    const { Nombre_Usuario, Contraseña, Rol } = req.body;
+    
+   
+
+    const values = [Nombre_Usuario, Contraseña, Rol];
+
+    conexion.query('INSERT INTO Usuarios (Nombre_Usuario, Contraseña, Rol) VALUES (?, ?, ?)',
+    values, (err, result) => {
+        if (err) {
+            return res.status(500).send('Error al insertar datos');
+        }
+        res.status(201).send('Usuario insertado con éxito');
+    });
+});
+
+
 
 
 // Exportamos para que otros archivos puedan usar estas rutas
