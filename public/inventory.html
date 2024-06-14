@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Display</title>
+</head>
+<body>
+    <h1>Inventory List</h1>
+    <div>
+        <button onclick="fetchInventory()">Load Inventory</button>
+        <table id="inventoryTable" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Inventory items will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function fetchInventory() {
+            fetch('/inventory')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('inventoryTable').getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = ''; // Clear previous entries
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+                    const idCell = row.insertCell(0);
+                    const nameCell = row.insertCell(1);
+                    const quantityCell = row.insertCell(2);
+                    const priceCell = row.insertCell(3);
+                    
+                    idCell.textContent = item.id;
+                    nameCell.textContent = item.name;
+                    quantityCell.textContent = item.quantity;
+                    priceCell.textContent = item.price;
+                });
+            })
+            .catch(error => console.error('Error fetching inventory:', error));
+        }
+    </script>
+</body>
+</html>
