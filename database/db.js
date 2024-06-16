@@ -1,10 +1,10 @@
 // Requerimos la libreria mysql2
-const mysql2 = require('mysql2');
+const mysql2 = require('mysql');
 
 // Crear una conexión a la base de datos
 const conexion = mysql2.createConnection({
     host: 'localhost',
-    database: 'autopartswerehouse', // añde el nombre de tu database
+    database: 'chicken_shop', // añde el nombre de tu database
     user: 'root',
     password: ''
 });
